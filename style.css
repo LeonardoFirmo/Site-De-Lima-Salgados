@@ -401,6 +401,10 @@ footer{
         height:485px;
         width: 80vw;
     }
+    .coxinha img:hover{
+        height:500px;
+        width: 90vw;
+    }
     
     
 }
