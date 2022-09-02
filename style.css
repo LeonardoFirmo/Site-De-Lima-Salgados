@@ -12,7 +12,6 @@ body{
 .container{
     width: 1200px;
     margin: 0 auto;
-    /* border: red solid 5px; */
     
 }
 
@@ -20,7 +19,6 @@ body{
 
 header{
     height:20vh;
-    border: solid black 2px;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -60,7 +58,9 @@ a{
 .banner{
     height: 100vh;
     width: 98.75vw;
-    /* width: 1vw; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .banner img{
     height: 100%;
@@ -74,9 +74,7 @@ a{
     flex-direction: column;
     position: absolute;
     z-index: 1;
-    right:37.5vw;
-    top:50vh;
-    width: 25vw;
+    width: 320px;
     height: 30vh;
     background-color: #e500005e;
     border-radius: 10px;
@@ -108,25 +106,25 @@ a{
 .festas{
     display: flex;
     justify-content: space-around;
-    width: 70vw;
+    width: 625px;
     margin-top: 5vh;
     color: rgb(255, 255, 255);
 }
 .coxinha img{
-    width: 30vw;
-    height: 75vh;
-
+    height:485px;
+    width: 300px;
+    margin-right: 5vw;
 }
 .coxinha img:hover{
-    height: 77vh;
-    width: 31vw;
+    height:505px;
+    width: 320px;
 }
 
 .encomendasFesta{
     display: flex;
     flex-direction: column;
     font-size: 1rem;
-    height: 35vh;
+    height: 230px;
     width: 35vw;
     justify-content: center;
     background-color: #571211;
@@ -149,7 +147,7 @@ a{
 .cardapio{
     display: flex;
     flex-direction: column;
-    height: 35vh;
+    height: 230px;
     width: 35vw;
     margin-top: 5vh;
     background-color: #571211;
@@ -175,31 +173,66 @@ a{
 
 }
 
+
+
 /* Mais vendidos */
 .maisVendidos{
-    height: 100vh;
+    height: 120vh;
     width: 98.75vw;
     padding-top: 5vh;
     color: white;
-    background-color: #BC2828;
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
+
+
 #maisVendidosTxt{
     position: relative;
-    color: white;
+    color: #B22828;
     height: 10vh;
     font-size: 2rem;
 }
 
 #maisVendidosTxt:hover::before{
     content: '';
-    background-color: rgb(255, 255, 255);
+    background-color: #B22828;
     height: 0.5vh;
     width: 100%;
     position: absolute;
     top:5vh;
 }
+
+
+.mvWrap{
+    display: flex;
+    margin-top: 5vh;
+  
+   
+}
+
+.mv4{
+    display: flex;
+    flex-wrap: wrap;
+    height:520px;
+    width: 620px;
+    justify-content: space-around;
+    align-content: space-between;
+}
+.mv4 img{
+    display: block;
+    height: 250px;
+    
+}
+.mvVertical{
+    height:520px;
+}
+.mvVertical img{
+    display: block;
+    height: 100%;
+}
+
 
 
 /* FOOTER  */
@@ -266,4 +299,136 @@ footer{
     height: 27px;
     border-radius: 20px;
     
+}
+
+
+
+
+@media (max-width:970px) {
+    .container{
+        width: 80vw;
+    }
+    
+    .mv4{
+        display: flex;
+        flex-wrap: wrap;
+        height:400px;
+        width: 500px;
+        justify-content: space-around;
+        align-content: space-between;
+    }
+    .mv4 img{
+        height: 195px;
+        
+    }
+    .mvVertical{
+        height:400px;
+    }
+    .mvVertical img{
+        height: 100%;
+    }
+    
+
+}
+
+@media (max-width:770px) {
+    .banner{
+        width: 100vw;
+    }
+    #title{
+        display: none;
+    }
+    .maisVendidos{
+        height: 150vh;
+    }
+    .mvWrap{
+    
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .mv4{
+        display: flex;
+        flex-wrap: wrap;
+        height:300px;
+        width: 100%;
+        justify-content: space-around;
+        align-content: space-between;
+    }
+    .mv4 img{
+        height: 144px;
+        width: 35vw;
+        
+    }
+    .mvVertical{
+       
+        height:320px;
+        margin-top: 3vh;
+    }
+    .mvVertical img{
+       
+        width: 75vw;
+    }
+    .coxinha{
+        margin-top: 5vh;
+        display: flex;
+        align-content: center;
+    }
+ 
+  
+}
+
+@media (max-width:580px) {
+    .zapHeader{
+        display: none;
+    }
+    .coluna{
+        order: -1;
+    }
+    .festas{
+        flex-direction: column;
+        align-items: center;
+    }
+    .encomendasFesta{
+        width: 80vw;
+    }
+    .cardapio{
+        width: 80vw;
+        
+    }
+    .coxinha img{
+        margin:0 auto;
+        height:485px;
+        width: 80vw;
+    }
+    
+    
+}
+@media (max-height:500px) {
+    .maisVendidos{
+        height: 180vh;
+    }
+    .texto{
+      
+        width: 320px;
+        height: 175px;
+       
+    }
+   
+
+}
+
+@media (max-height:420px) {
+    .maisVendidos{
+        height: 220vh;
+    }
+    
+
+}
+
+
+@media (max-height:335px) {
+    .maisVendidos{
+        height: 250vh;
+    }
 }
