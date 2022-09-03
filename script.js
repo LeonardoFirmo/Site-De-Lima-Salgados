@@ -1,27 +1,30 @@
 const negativo = document.querySelectorAll('.negativo')
 const positivo = document.querySelectorAll('.positivo')
-// let quantidade = document.querySelectorAll('.quantidade')
+
 
 console.log(negativo)
 console.log(positivo)
-// console.log(quantidade)
+
 
 
 negativo.forEach((item) => {
     item.addEventListener('click',()=>{
         
-        let filho = item.parentNode.children[1]
+        let quantidade = item.parentNode.children[1]
+      
        
 
-        if(filho.innerHTML > 0){
-            let filho = item.parentNode.children[1]
-            filho.innerHTML= Number(filho.innerHTML)-1
-            if(filho.innerHTML ==0){
-                filho.style.color='black'
+        if(quantidade.innerHTML > 0){
+            let quantidade = item.parentNode.children[1]
+            quantidade.innerHTML= Number(quantidade.innerHTML)-1
+            if(quantidade.innerHTML ==0){
+                quantidade.style.color='black'
             }
            
         }
-        console.log(filho.innerHTML)
+        console.log(item.parentNode.parentNode.children[0].innerHTML)
+        console.log(item.parentNode.parentNode.children[1].innerHTML)
+        console.log(quantidade.innerHTML)
     })
     
     
@@ -29,15 +32,18 @@ negativo.forEach((item) => {
 
 positivo.forEach((item) => {
     item.addEventListener('click',()=>{
-        let filho = item.parentNode.children[1]
-        
-        if(filho.innerHTML >= 0){
-            filho.style.color='green'
-            filho.innerHTML= Number(filho.innerHTML)+1
+        let quantidade = item.parentNode.children[1]
+       
+        if(quantidade.innerHTML >= 0){
+            quantidade.style.color='green'
+            quantidade.innerHTML= Number(quantidade.innerHTML)+1
 
         }
-
-        console.log(filho.innerHTML)
+        // console.log(item.parentNode.parentNode.children[0].innerHTML)
+        // console.log(item.parentNode.parentNode.children[1].innerHTML)
+        // console.log(quantidade.innerHTML)
+        let itensSelecionados = [item.parentNode.parentNode.children[0].innerHTML,item.parentNode.parentNode.children[1].innerHTML,quantidade.innerHTML]
+        console.log(itensSelecionados)
     })
     
 });
