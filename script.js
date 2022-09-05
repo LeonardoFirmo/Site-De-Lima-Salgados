@@ -8,9 +8,11 @@ console.log(positivo)
 
 
 
+
 negativo.forEach((item) => {
     item.addEventListener('click',()=>{
-        
+        let nomeItem = item.parentNode.parentNode.children[0].innerHTML
+        let precoItem = item.parentNode.parentNode.children[1].innerHTML
         let quantidade = item.parentNode.children[1]
       
        
@@ -18,10 +20,13 @@ negativo.forEach((item) => {
         if(quantidade.innerHTML > 0){
             let quantidade = item.parentNode.children[1]
             quantidade.innerHTML= Number(quantidade.innerHTML)-1
+
+
+               
             if(quantidade.innerHTML ==0){
                 quantidade.style.color='black'
             }
-           
+        
         }
         console.log(item.parentNode.parentNode.children[0].innerHTML)
         console.log(item.parentNode.parentNode.children[1].innerHTML)
