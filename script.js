@@ -72,25 +72,25 @@ positivo.forEach((item) => {
             }
             let pedido=[]
             
-            function adicionarProduto(obj){
+            function adicionarProduto(array=[]){
 
-                pedido.forEach(item=>{
-                    console.log('iniciando checagem')
-                    if(item.nome.includes(nomeItem)){
-                        console.log('já existe na lista')
-                    }else{
-                        console.log('não existe')
-                        return pedido.push(obj)
-                    }
+                array.forEach(item=>{
+                    console.log(item.nome)
+                    // if(item.nome.includes(nomeItem)){
+                    //     console.log('já existe na lista')
+                    // }else{
+                    //     console.log('não existe')
+                    //     return pedido.push(obj)
+                    // }
             
 
                 })
 
             }
             
-            console.log(pedido)
+            // console.log(pedido)
 
-           adicionarProduto(pedidoAtual)
+           adicionarProduto(pedido)
    
      
           
