@@ -59,36 +59,44 @@ positivo.forEach((item) => {
         let precoItem = item.parentNode.parentNode.children[1].innerHTML
      
         
-
+        // console.log(ParagraphQuantidade,quantidade,nomeItem,precoItem)
         if(quantidade >= 0){
             ParagraphQuantidade.style.color='green'
             ParagraphQuantidade.innerHTML= Number(quantidade)+1
 
           
-            let pedidoAtual= {
-                nome:nomeItem,
-                preco:precoItem,
-                qtd:quantidade
-            }
-            let pedido=[]
+            // let pedidoAtual= [{
+            //     nome:nomeItem,
+            //     preco:precoItem,
+            //     qtd:quantidade
+            // }]
+            let pedidoAtual= [{
+                nome:'abc',
+                preco:0,
+                qtd:0
+            }]
+            
+            let pedido=[nomeItem,precoItem,quantidade]
+            // console.log(pedidoAtual[0].nome)
             
             function adicionarProduto(array=[]){
 
                 array.forEach(item=>{
-                    console.log(item.nome)
-                    // if(item.nome.includes(nomeItem)){
-                    //     console.log('já existe na lista')
-                    // }else{
-                    //     console.log('não existe')
-                    //     return pedido.push(obj)
-                    // }
+                    console.log(item)
+                    console.log(pedidoAtual[0].nome)
+                    if(pedidoAtual[0].nome.includes(item)){
+                        console.log('já existe na lista')
+                    }else{
+                        console.log('não existe')
+                        pedidoAtual.push(array)
+                       
+                    }
             
 
                 })
 
             }
             
-            // console.log(pedido)
 
            adicionarProduto(pedido)
    
