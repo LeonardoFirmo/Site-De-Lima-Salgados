@@ -76,30 +76,9 @@ positivo.forEach((item) => {
             pedidoAtual+= pedido
             
 
-            if(!pedidoAtual[1].includes(pedido[1])){
-                
-                console.log('nãoexiste')
-            }else{
-                console.log('já existe')
-              
-            }
-            
             
            
-            
-            // pedidoAtual.push(pedido)
-            // console.log(pedidoAtual)
-            
-            // function adicionarProduto(produto){
-              
-
-            //  pedidoAtual.push(produto)
-
-            // }
-         
-
-        //    adicionarProduto(pedido)
-   
+     
      
           
             
@@ -110,7 +89,7 @@ positivo.forEach((item) => {
         
        
         
-        // let itensSelecionados = [item.parentNode.parentNode.children[0].innerHTML,item.parentNode.parentNode.children[1].innerHTML,quantidade.innerHTML]
+       
        
     })
     
