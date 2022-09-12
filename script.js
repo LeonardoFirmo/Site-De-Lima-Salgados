@@ -11,6 +11,7 @@ let pedidoFinal = [
  { nomeProduto:'Coxinha de frango',precoProduto:1.60,somaPreco:0,quantidadeProduto:0},
  { nomeProduto:'Esfirra',precoProduto:2.60,somaPreco:0,quantidadeProduto:0},
  { nomeProduto:'Coxinha de calabresa',precoProduto:1.90,somaPreco:0,quantidadeProduto:0},
+ { nomeProduto:'Pastel de carne',precoProduto:3.90,somaPreco:0,quantidadeProduto:0},
 
 ]
 
@@ -38,7 +39,12 @@ function somaPrecos(){
 function mostraPedidoCliente(){
     clienteResumoPedido.innerHTML=''
     let precoTotal= somaPrecos()
-
+    if(precoTotal > 0){
+        clienteResumoPedido.innerHTML+= `<h3>✅NOVO PEDIDO</h3>`
+    }else{
+        enviarPedido.style.display='none'
+    }
+   
     pedidoFinal.forEach(item =>{
        if(item.quantidadeProduto > 0){
         clienteResumoPedido.innerHTML+= `${item.nomeProduto}<br>
@@ -50,6 +56,7 @@ function mostraPedidoCliente(){
     })
    
     if(precoTotal > 0){
+        
         clienteResumoPedido.innerHTML+= `<h2>Valor Total:${precoTotal}</h2>`
         enviarPedido.style.display='block'
     }
