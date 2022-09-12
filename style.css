@@ -309,6 +309,10 @@ footer{
     display:flex
 }
 
+#enviarPedido{
+    display: none;
+}
+
 
 
 
