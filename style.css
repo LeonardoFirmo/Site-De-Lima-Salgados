@@ -312,8 +312,20 @@ footer{
 #enviarPedido{
     display: none;
 }
-
-
+.pedido{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.btPedido{
+  height: 30px;
+  width: 100px;
+}
+.enviarPedido{
+    text-align: center;
+    justify-content: center;
+}
 
 
 @media (max-width:970px) {
