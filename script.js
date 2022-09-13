@@ -12,6 +12,7 @@ let pedidoFinal = [
  { nomeProduto:'Esfirra',precoProduto:2.60,somaPreco:0,quantidadeProduto:0},
  { nomeProduto:'Coxinha de calabresa',precoProduto:1.90,somaPreco:0,quantidadeProduto:0},
  { nomeProduto:'Pastel de carne',precoProduto:3.90,somaPreco:0,quantidadeProduto:0},
+ { nomeProduto:'Empadão',precoProduto:8.90,somaPreco:0,quantidadeProduto:0},
 
 ]
 
