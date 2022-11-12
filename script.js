@@ -1,11 +1,12 @@
 const produtos = document.querySelector('.produtos')
-const listaProdutos = Array.from(produtos.children)
 const clienteResumoPedido = document.querySelector('#valor')
 const novoPedidoH3 = document.querySelector('#novoPedido')
 const calculaPedido = document.querySelector('#calcularPedido')
 const enviarPedido = document.querySelector('#enviarPedido')
 
 
+
+enviarPedido.addEventListener('click', enviarPedidoZap)
 
 
 let pedidoFinal = [
@@ -17,21 +18,41 @@ let pedidoFinal = [
 
 ]
 
-function enviarPedidoZap(){
-    let texto = `✅ NOVO PEDIDO\n------------------------------\n▶ RESUMO DO PEDIDO\n------------------------------\n${clienteResumoPedido.innerText}` ;
-    let pedido = window.encodeURIComponent(texto);
-    window.open("https://api.whatsapp.com/send?phone=5521980511433&text="+pedido)
+renderizaProdutos(pedidoFinal)
+
+function renderizaProdutos(product){   
+    product.forEach(item =>{
+
+        produtos.innerHTML+=`
+        <div class="produtoWrapper">
+            <img class="imgProdutos" src="img/coxinha.jpg" alt="">
+
+            <div class="produto">
+
+                <p id="precoDescricao">${item.nomeProduto}</p>
+                <p id="precoDescricao">${item.precoProduto.toFixed(2).replace('.',',')}</p> 
+
+                <div class="botoes" style="display:flex">
+                    <button class="bt negativo">-</button> 
+                    <p class="quantidade">0</p> 
+                    <button class="bt positivo">+</button>
+                </div>
+
+            </div>
+        </div>`
+        
+    })
+
+    const listaProdutos = Array.from(produtos.children)
+    verificaQuantidade(listaProdutos)
+
 }
-
-
 
 
 function somaPrecos(){
     let soma = 0
     pedidoFinal.map(item =>{
-        
         soma += Number(item.somaPreco)
-        
     })
     return soma.toFixed(2)
 }
@@ -54,7 +75,6 @@ function mostraPedidoCliente(){
         Quantidade:${item.quantidadeProduto}<br>
         Subtotal do item:${item.somaPreco.replace('.',',')}<br>
         --------------------------------<br>`} 
-
     })
    
     if(precoTotal > 0){
@@ -62,25 +82,29 @@ function mostraPedidoCliente(){
         clienteResumoPedido.innerHTML+= `<h2>Valor Total:${precoTotal.replace('.',',')}</h2>`
         enviarPedido.style.display='block'
     }
-    
-    
+      
 }
 
-// calculaPedido.addEventListener('click',mostraPedidoCliente)
-enviarPedido.addEventListener('click', enviarPedidoZap)
+function enviarPedidoZap(){
+    let texto = `✅ NOVO PEDIDO\n------------------------------\n▶ RESUMO DO PEDIDO\n------------------------------\n${clienteResumoPedido.innerText}` ;
+    let pedido = window.encodeURIComponent(texto);
+    window.open("https://api.whatsapp.com/send?phone=5521980511433&text="+pedido)
+}
 
 
-function verificaQuantidade(){
-   
 
+
+function verificaQuantidade(listaProdutos){
     listaProdutos.forEach((item)=>{
+        
         const negativo = item.children[1].children[2].children[0]
         let quantidade = item.children[1].children[2].children[1]
         const positivo = item.children[1].children[2].children[2]
+        
     
         
         negativo.addEventListener('click',()=>{
-           
+            console.log('abc');
   
             if(quantidade.innerHTML-1 <= 0){
                 console.log(quantidade.innerHTML);
@@ -137,5 +161,5 @@ function verificaQuantidade(){
     
 }
 
-verificaQuantidade()
+
 
