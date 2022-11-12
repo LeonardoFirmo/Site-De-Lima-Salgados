@@ -1,6 +1,7 @@
 const produtos = document.querySelector('.produtos')
 const listaProdutos = Array.from(produtos.children)
 const clienteResumoPedido = document.querySelector('#valor')
+const novoPedidoH3 = document.querySelector('#novoPedido')
 const calculaPedido = document.querySelector('#calcularPedido')
 const enviarPedido = document.querySelector('#enviarPedido')
 
@@ -31,7 +32,6 @@ function somaPrecos(){
         
         soma += Number(item.somaPreco)
         
-        
     })
     return soma.toFixed(2)
 }
@@ -41,9 +41,11 @@ function mostraPedidoCliente(){
     clienteResumoPedido.innerHTML=''
     let precoTotal= somaPrecos()
     if(precoTotal > 0){
-        clienteResumoPedido.innerHTML+= `<h3>✅NOVO PEDIDO</h3>`
+        novoPedidoH3.style.display='flex'
+        novoPedidoH3.innerHTML= `<h3>✅NOVO PEDIDO</h3>`
     }else{
         enviarPedido.style.display='none'
+        novoPedidoH3.style.display='none'
     }
    
     pedidoFinal.forEach(item =>{
@@ -53,7 +55,6 @@ function mostraPedidoCliente(){
         Quantidade:${item.quantidadeProduto}<br>
         --------------------------------<br>`} 
 
-     
     })
    
     if(precoTotal > 0){
@@ -71,8 +72,7 @@ enviarPedido.addEventListener('click', enviarPedidoZap)
 
 function verificaQuantidade(){
    
-        
-  
+
     listaProdutos.forEach((item)=>{
         const negativo = item.children[1].children[2].children[0]
         let quantidade = item.children[1].children[2].children[1]
@@ -81,10 +81,9 @@ function verificaQuantidade(){
         
         negativo.addEventListener('click',()=>{
            
-          
-           
-
+  
             if(quantidade.innerHTML-1 <= 0){
+                console.log(quantidade.innerHTML);
                 quantidade.style.color=''
                 quantidade.innerHTML=0
                 
@@ -94,8 +93,11 @@ function verificaQuantidade(){
             }
           
             pedidoFinal.forEach( (itemPF) => {
-               
-                if(itemPF.nomeProduto === item.children[1].children[0].innerText){
+
+                if(itemPF.quantidadeProduto <= 0){
+                    itemPF.quantidadeProduto = 0
+
+                }else if(itemPF.nomeProduto === item.children[1].children[0].innerText){
                    itemPF.quantidadeProduto --
                    itemPF.somaPreco =  (itemPF.precoProduto * itemPF.quantidadeProduto).toFixed(2)
                 }
@@ -125,12 +127,9 @@ function verificaQuantidade(){
 
             });
            
-           
-   
-           
+
         })
-       
-    
+
     
     })
     
