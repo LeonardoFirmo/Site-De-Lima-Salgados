@@ -18,7 +18,7 @@ let pedidoFinal = [
 ]
 
 function enviarPedidoZap(){
-    let texto = `✅ NOVO PEDIDO\n------------------------------\n▶ RESUMO DO PEDIDO\n${clienteResumoPedido.innerText}` ;
+    let texto = `✅ NOVO PEDIDO\n------------------------------\n▶ RESUMO DO PEDIDO\n------------------------------\n${clienteResumoPedido.innerText}` ;
     let pedido = window.encodeURIComponent(texto);
     window.open("https://api.whatsapp.com/send?phone=5521980511433&text="+pedido)
 }
@@ -51,7 +51,7 @@ function mostraPedidoCliente(){
     pedidoFinal.forEach(item =>{
        if(item.quantidadeProduto > 0){
         clienteResumoPedido.innerHTML+= `${item.nomeProduto}<br>
-        Subtotal do item:${item.somaPreco}<br>
+        Subtotal do item:${item.somaPreco.replace('.',',')}<br>
         Quantidade:${item.quantidadeProduto}<br>
         --------------------------------<br>`} 
 
@@ -59,7 +59,7 @@ function mostraPedidoCliente(){
    
     if(precoTotal > 0){
         
-        clienteResumoPedido.innerHTML+= `<h2>Valor Total:${precoTotal}</h2>`
+        clienteResumoPedido.innerHTML+= `<h2>Valor Total:${precoTotal.replace('.',',')}</h2>`
         enviarPedido.style.display='block'
     }
     
