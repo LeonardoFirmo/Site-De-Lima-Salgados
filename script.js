@@ -51,8 +51,8 @@ function mostraPedidoCliente(){
     pedidoFinal.forEach(item =>{
        if(item.quantidadeProduto > 0){
         clienteResumoPedido.innerHTML+= `${item.nomeProduto}<br>
-        Subtotal do item:${item.somaPreco.replace('.',',')}<br>
         Quantidade:${item.quantidadeProduto}<br>
+        Subtotal do item:${item.somaPreco.replace('.',',')}<br>
         --------------------------------<br>`} 
 
     })
@@ -66,7 +66,7 @@ function mostraPedidoCliente(){
     
 }
 
-calculaPedido.addEventListener('click',mostraPedidoCliente)
+// calculaPedido.addEventListener('click',mostraPedidoCliente)
 enviarPedido.addEventListener('click', enviarPedidoZap)
 
 
@@ -90,6 +90,7 @@ function verificaQuantidade(){
               
             }else{
                 quantidade.innerHTML --
+                
             }
           
             pedidoFinal.forEach( (itemPF) => {
@@ -100,6 +101,7 @@ function verificaQuantidade(){
                 }else if(itemPF.nomeProduto === item.children[1].children[0].innerText){
                    itemPF.quantidadeProduto --
                    itemPF.somaPreco =  (itemPF.precoProduto * itemPF.quantidadeProduto).toFixed(2)
+                   mostraPedidoCliente()
                 }
 
             });
@@ -121,7 +123,7 @@ function verificaQuantidade(){
                 if(itemPF.nomeProduto === item.children[1].children[0].innerText){
                    itemPF.quantidadeProduto ++
                    itemPF.somaPreco =  (itemPF.precoProduto * itemPF.quantidadeProduto).toFixed(2)
-                  
+                   mostraPedidoCliente()
                    
                 }
 
