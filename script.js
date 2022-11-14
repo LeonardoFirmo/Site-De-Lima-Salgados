@@ -63,7 +63,7 @@ function mostraPedidoCliente(){
     let precoTotal= somaPrecos()
     if(precoTotal > 0){
         novoPedidoH3.style.display='flex'
-        novoPedidoH3.innerHTML= `<h3>✅NOVO PEDIDO</h3>`
+        novoPedidoH3.innerHTML= `✅NOVO PEDIDO`
     }else{
         enviarPedido.style.display='none'
         novoPedidoH3.style.display='none'
@@ -104,10 +104,9 @@ function verificaQuantidade(listaProdutos){
     
         
         negativo.addEventListener('click',()=>{
-            console.log('abc');
+           
   
             if(quantidade.innerHTML-1 <= 0){
-                console.log(quantidade.innerHTML);
                 quantidade.style.color=''
                 quantidade.innerHTML=0
                 
