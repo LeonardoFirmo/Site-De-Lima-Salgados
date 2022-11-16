@@ -14,7 +14,7 @@ let pedidoFinal = [
  { nome:'Coxinha de frango c/ catupiry',tipo:'Frito',preco:2.00,somaPreco:0,quantidade:0,img:'coxinhaDeFrango.jpg'},
  { nome:'Bolinho de queijo',tipo:'Frito',preco:1.80,somaPreco:0,quantidade:0,img:'esfirra.jpg'},
  { nome:'Bolinho de carne',tipo:'Frito',preco:1.80,somaPreco:0,quantidade:0,img:'coxinhaDeCalabresa.jpg'},
- { nome:'Bolinho de calabresa',preco:1.80,somaPreco:0,quantidade:0,img:'pastelDeCarne.jpg'},
+ { nome:'Bolinho de calabresa',tipo:'Frito',preco:1.80,somaPreco:0,quantidade:0,img:'pastelDeCarne.jpg'},
  { nome:'Risole',tipo:'Frito',preco:1.80,somaPreco:0,quantidade:0,img:'empadao.jpg'},
  { nome:'Kibe',tipo:'Frito',preco:1.80,somaPreco:0,quantidade:0,img:'empadao.jpg'},
 
@@ -26,7 +26,7 @@ let pedidoFinal = [
  { nome:'Esfiha de frango',tipo:'Esfiha',preco:3.00,somaPreco:0,quantidade:0,img:'empadao.jpg'},
  { nome:'Esfiha de frango c/ catupiry',tipo:'Esfiha',preco:3.50,somaPreco:0,quantidade:0,img:'empadao.jpg'},
  { nome:'Esfiha de Calabresa',tipo:'Esfiha',preco:3.00,somaPreco:0,quantidade:0,img:'empadao.jpg'},
- { nome:'Esfiha de catupiry',preco:3.00,somaPreco:0,quantidade:0,img:'empadao.jpg'},
+ { nome:'Esfiha de catupiry',tipo:'Esfiha',preco:3.00,somaPreco:0,quantidade:0,img:'empadao.jpg'},
  { nome:'Esfiha de catupiry com milho',tipo:'Esfiha',preco:3.50,somaPreco:0,quantidade:0,img:'empadao.jpg'},
 
 ]
@@ -34,29 +34,82 @@ let pedidoFinal = [
 renderizaProdutos(pedidoFinal)
 
 function renderizaProdutos(product){   
+    // produtos.append('<h2>Salgados Fritos</h2>')
+    // produtos[0].innerHTML+='<h2>Salgados Fritos</h2>'
+    // produtos.children[2].innerHTML+='<h2>Esfiha</h2>'
+    // produtos.children[4].innerHTML+='<h2>Empada</h2>'
     product.forEach(item =>{
         
-        produtos.innerHTML+=`
-        <div class="produtoWrapper">
-            <img class="imgProdutos" src="img/coxinha.jpg" alt="">
+        if(item.tipo === 'Frito'){
 
-            <div class="produto">
-
-                <p id="precoDescricao">${item.nome}</p>
-                <p id="">${item.preco.toFixed(2).replace('.',',')}</p> 
-
-                <div class="botoes" style="display:flex">
-                    <button class="bt negativo">-</button> 
-                    <p class="quantidade">0</p> 
-                    <button class="bt positivo">+</button>
+            // console.log(produtos.children[0]);
+            
+            produtos.children[0].innerHTML+=`
+            <div class="produtoWrapper">
+                <img class="imgProdutos" src="img/coxinha.jpg" alt="">
+    
+                <div class="produto">
+    
+                    <p id="precoDescricao">${item.nome}</p>
+                    <p id="">${item.preco.toFixed(2).replace('.',',')}</p> 
+    
+                    <div class="botoes" style="display:flex">
+                        <button class="bt negativo">-</button> 
+                        <p class="quantidade">0</p> 
+                        <button class="bt positivo">+</button>
+                    </div>
+    
                 </div>
+            </div>`
 
-            </div>
-        </div>`
+        }else if(item.tipo === 'Esfiha'){
+
+            produtos.children[1].innerHTML+=`
+            <div class="produtoWrapper">
+                <img class="imgProdutos" src="img/coxinha.jpg" alt="">
+    
+                <div class="produto">
+    
+                    <p id="precoDescricao">${item.nome}</p>
+                    <p id="">${item.preco.toFixed(2).replace('.',',')}</p> 
+    
+                    <div class="botoes" style="display:flex">
+                        <button class="bt negativo">-</button> 
+                        <p class="quantidade">0</p> 
+                        <button class="bt positivo">+</button>
+                    </div>
+    
+                </div>
+            </div>`
+
+        }else{
+
+            produtos.children[2].innerHTML+=`
+            <div class="produtoWrapper">
+                <img class="imgProdutos" src="img/coxinha.jpg" alt="">
+    
+                <div class="produto">
+    
+                    <p id="precoDescricao">${item.nome}</p>
+                    <p id="">${item.preco.toFixed(2).replace('.',',')}</p> 
+    
+                    <div class="botoes" style="display:flex">
+                        <button class="bt negativo">-</button> 
+                        <p class="quantidade">0</p> 
+                        <button class="bt positivo">+</button>
+                    </div>
+    
+                </div>
+            </div>`
+
+        }
+        
+       
         
     })
     
     const listaProdutos = Array.from(produtos.children)
+    
     verificaQuantidade(listaProdutos)
 
 }
@@ -108,7 +161,11 @@ function enviarPedidoZap(){
 
 
 function verificaQuantidade(listaProdutos){
-    listaProdutos.forEach((item)=>{
+
+    console.log(listaProdutos[0]);
+
+    listaProdutos[0].forEach((item)=>{
+
         
         const negativo = item.children[1].children[2].children[0]
         let quantidade = item.children[1].children[2].children[1]

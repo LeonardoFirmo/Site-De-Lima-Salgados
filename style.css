@@ -250,6 +250,8 @@ footer{
 
 .produtos{
     display: flex;
+    flex-direction: column;
+    width: 100%;
     justify-content: center;
     width: 70vw;
     border: black solid 5px;
@@ -264,6 +266,13 @@ footer{
     min-width: 180px;
     max-width: 270px;
   
+}
+
+
+.salgados{
+    display: flex;
+    flex-wrap: wrap;
+
 }
 
 
