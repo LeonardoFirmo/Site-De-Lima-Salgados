@@ -1,4 +1,5 @@
 const produtos = document.querySelector('.produtos')
+const salgadosFritos = document.querySelector('.salgados-fritos')
 const clienteResumoPedido = document.querySelector('#valor')
 const novoPedidoH3 = document.querySelector('#novoPedido')
 const calculaPedido = document.querySelector('#calcularPedido')
@@ -10,16 +11,16 @@ enviarPedido.addEventListener('click', enviarPedidoZap)
 
 
 let pedidoFinal = [
- { nome:'Coxinha de frango',tipo:'Frito',preco:1.80,somaPreco:0,quantidade:0,img:'coxinhaDeFrango.jpg'},
- { nome:'Coxinha de frango c/ catupiry',tipo:'Frito',preco:2.00,somaPreco:0,quantidade:0,img:'coxinhaDeFrango.jpg'},
- { nome:'Bolinho de queijo',tipo:'Frito',preco:1.80,somaPreco:0,quantidade:0,img:'esfirra.jpg'},
- { nome:'Bolinho de carne',tipo:'Frito',preco:1.80,somaPreco:0,quantidade:0,img:'coxinhaDeCalabresa.jpg'},
- { nome:'Bolinho de calabresa',tipo:'Frito',preco:1.80,somaPreco:0,quantidade:0,img:'pastelDeCarne.jpg'},
- { nome:'Risole',tipo:'Frito',preco:1.80,somaPreco:0,quantidade:0,img:'empadao.jpg'},
- { nome:'Kibe',tipo:'Frito',preco:1.80,somaPreco:0,quantidade:0,img:'empadao.jpg'},
+ { nome:'Coxinha de frango',tipo:'Salgados Fritos',preco:1.80,somaPreco:0,quantidade:0,img:'coxinhaDeFrango.jpg'},
+ { nome:'Coxinha de frango c/ catupiry',tipo:'Salgados Fritos',preco:2.00,somaPreco:0,quantidade:0,img:'coxinhaDeFrango.jpg'},
+ { nome:'Bolinho de queijo',tipo:'Salgados Fritos',preco:1.80,somaPreco:0,quantidade:0,img:'esfirra.jpg'},
+ { nome:'Bolinho de carne',tipo:'Salgados Fritos',preco:1.80,somaPreco:0,quantidade:0,img:'coxinhaDeCalabresa.jpg'},
+ { nome:'Bolinho de calabresa',tipo:'Salgados Fritos',preco:1.80,somaPreco:0,quantidade:0,img:'pastelDeCarne.jpg'},
+ { nome:'Risole',tipo:'Salgados Fritos',preco:1.80,somaPreco:0,quantidade:0,img:'empadao.jpg'},
+ { nome:'Kibe',tipo:'Salgados Fritos',preco:1.80,somaPreco:0,quantidade:0,img:'empadao.jpg'},
 
- { nome:'Empada de frango',tipo:'Empada',preco:3.00,somaPreco:0,quantidade:0,img:'empadao.jpg'},
- { nome:'Empada de frango c/ catupiry',tipo:'Empada',preco:3.50,somaPreco:0,quantidade:0,img:'empadao.jpg'},
+ { nome:'Empada de frango',tipo:'Empadas',preco:3.00,somaPreco:0,quantidade:0,img:'empadao.jpg'},
+ { nome:'Empada de frango c/ catupiry',tipo:'Empadas',preco:3.50,somaPreco:0,quantidade:0,img:'empadao.jpg'},
 
  { nome:'Esfiha de carne',tipo:'Esfiha',preco:3.00,somaPreco:0,quantidade:0,img:'empadao.jpg'},
  { nome:'Esfiha de queijo',tipo:'Esfiha',preco:3.00,somaPreco:0,quantidade:0,img:'empadao.jpg'},
@@ -31,18 +32,20 @@ let pedidoFinal = [
 
 ]
 
-renderizaProdutos(pedidoFinal)
+// 
 
-function renderizaProdutos(product){   
-    // produtos.append('<h2>Salgados Fritos</h2>')
-    // produtos[0].innerHTML+='<h2>Salgados Fritos</h2>'
-    // produtos.children[2].innerHTML+='<h2>Esfiha</h2>'
-    // produtos.children[4].innerHTML+='<h2>Empada</h2>'
-    product.forEach(item =>{
+
+function renderizaProdutos(product,itemClicado){
+   
+
+    product.filter(item =>{
         
-        if(item.tipo === 'Frito'){
+        console.log(itemClicado);
+        // console.log(item.tipo, itemClicado);
+        // console.log(item.tipo === itemClicado);
+        if(itemClicado === 'Salgados Fritos' && item.tipo === 'Salgados Fritos' ){
 
-            // console.log(produtos.children[0]);
+           
             
             produtos.children[0].innerHTML+=`
             <div class="produtoWrapper">
@@ -62,7 +65,9 @@ function renderizaProdutos(product){
                 </div>
             </div>`
 
-        }else if(item.tipo === 'Esfiha'){
+        
+
+        }else if(itemClicado === 'Esfiha' && item.tipo === 'Esfiha'){
 
             produtos.children[1].innerHTML+=`
             <div class="produtoWrapper">
@@ -81,9 +86,10 @@ function renderizaProdutos(product){
     
                 </div>
             </div>`
+            
 
-        }else{
-
+        }else if(itemClicado === 'Empadas' && item.tipo === 'Empadas'){
+            
             produtos.children[2].innerHTML+=`
             <div class="produtoWrapper">
                 <img class="imgProdutos" src="img/coxinha.jpg" alt="">
@@ -110,59 +116,41 @@ function renderizaProdutos(product){
     
     const listaProdutos = Array.from(produtos.children)
     
-    verificaQuantidade(listaProdutos)
+    // verificaQuantidade(listaProdutos)
 
 }
 
 
-function somaPrecos(){
-    let soma = 0
-    pedidoFinal.map(item =>{
-        soma += Number(item.somaPreco)
-    })
-    return soma.toFixed(2)
-}
 
 
-function mostraPedidoCliente(){
-    clienteResumoPedido.innerHTML=''
-    let precoTotal= somaPrecos()
-    if(precoTotal > 0){
-        novoPedidoH3.style.display='flex'
-        novoPedidoH3.innerHTML= `✅NOVO PEDIDO`
+
+
+produtos.addEventListener('click',RenderizaTipoDeProduto)
+
+function RenderizaTipoDeProduto (event){
+    const itemClicado = event.target.innerHTML
+    const tamanhoLista =event.target.parentNode.children.length
+    const verificaItemClicado=  itemClicado === 'Salgados Fritos' || itemClicado === 'Empadas' || itemClicado === 'Esfiha'
+    
+    
+    
+    if(tamanhoLista > 1  && verificaItemClicado){
+       
+        // event.target.parentNode.style.display='none'
+       event.target.parentNode.innerHTML=`<h2>${itemClicado}</h2>`
     }else{
-        enviarPedido.style.display='none'
-        novoPedidoH3.style.display='none'
+        renderizaProdutos(pedidoFinal,itemClicado)
     }
+    
    
-    pedidoFinal.forEach(item =>{
-       if(item.quantidade > 0){
-        clienteResumoPedido.innerHTML+= `${item.nome}<br>
-        Quantidade:${item.quantidade}<br>
-        Subtotal do item:${item.somaPreco.replace('.',',')}<br>
-        --------------------------------<br>`} 
-    })
-   
-    if(precoTotal > 0){
-        
-        clienteResumoPedido.innerHTML+= `<h2>Valor Total:${precoTotal.replace('.',',')}</h2>`
-        enviarPedido.style.display='block'
-    }
-      
+
+
 }
-
-function enviarPedidoZap(){
-    let texto = `✅ NOVO PEDIDO\n------------------------------\n▶ RESUMO DO PEDIDO\n------------------------------\n${clienteResumoPedido.innerText}` ;
-    let pedido = window.encodeURIComponent(texto);
-    window.open("https://api.whatsapp.com/send?phone=5521980511433&text="+pedido)
-}
-
-
 
 
 function verificaQuantidade(listaProdutos){
 
-    console.log(listaProdutos[0]);
+
 
     listaProdutos[0].forEach((item)=>{
 
@@ -232,3 +220,47 @@ function verificaQuantidade(listaProdutos){
 
 
 
+// Finaliza pedido  SOMA / MOSTRA / ENVIA PEDIDO
+
+
+function somaPrecos(){
+    let soma = 0
+    pedidoFinal.map(item =>{
+        soma += Number(item.somaPreco)
+    })
+    return soma.toFixed(2)
+}
+
+
+function mostraPedidoCliente(){
+    clienteResumoPedido.innerHTML=''
+    let precoTotal= somaPrecos()
+    if(precoTotal > 0){
+        novoPedidoH3.style.display='flex'
+        novoPedidoH3.innerHTML= `✅NOVO PEDIDO`
+    }else{
+        enviarPedido.style.display='none'
+        novoPedidoH3.style.display='none'
+    }
+   
+    pedidoFinal.forEach(item =>{
+       if(item.quantidade > 0){
+        clienteResumoPedido.innerHTML+= `${item.nome}<br>
+        Quantidade:${item.quantidade}<br>
+        Subtotal do item:${item.somaPreco.replace('.',',')}<br>
+        --------------------------------<br>`} 
+    })
+   
+    if(precoTotal > 0){
+        
+        clienteResumoPedido.innerHTML+= `<h2>Valor Total:${precoTotal.replace('.',',')}</h2>`
+        enviarPedido.style.display='block'
+    }
+      
+}
+
+function enviarPedidoZap(){
+    let texto = `✅ NOVO PEDIDO\n------------------------------\n▶ RESUMO DO PEDIDO\n------------------------------\n${clienteResumoPedido.innerText}` ;
+    let pedido = window.encodeURIComponent(texto);
+    window.open("https://api.whatsapp.com/send?phone=5521980511433&text="+pedido)
+}

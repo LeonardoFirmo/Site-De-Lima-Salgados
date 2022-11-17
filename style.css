@@ -255,6 +255,7 @@ footer{
     justify-content: center;
     width: 70vw;
     border: black solid 5px;
+    border-radius: 15px;
     flex-wrap: wrap;
 }
 
@@ -273,6 +274,13 @@ footer{
     display: flex;
     flex-wrap: wrap;
 
+}
+
+
+.produtos h2{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
 }
 
 
