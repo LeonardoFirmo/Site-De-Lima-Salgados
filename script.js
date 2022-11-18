@@ -1,4 +1,7 @@
-const produtos = document.querySelector('.produtos')
+// const produtos = document.querySelector('.produtos')
+const salgadosFritos = document.querySelector('.fritos')
+const esfihas = document.querySelector('.esfihas')
+const empadas = document.querySelector('.empadas')
 const clienteResumoPedido = document.querySelector('#valor')
 const novoPedidoH3 = document.querySelector('#novoPedido')
 const calculaPedido = document.querySelector('#calcularPedido')
@@ -32,33 +35,158 @@ let pedidoFinal = [
 
 renderizaProdutos(pedidoFinal)
 
-function renderizaProdutos(product){   
-    product.forEach(item =>{
-
-        produtos.innerHTML+=`
-        <div class="produtoWrapper">
-            <img class="imgProdutos" src="img/coxinha.jpg" alt="">
-
-            <div class="produto">
-
-                <p id="precoDescricao">${item.nome}</p>
-                <p id="precoDescricao">${item.preco.toFixed(2).replace('.',',')}</p> 
-
-                <div class="botoes" style="display:flex">
-                    <button class="bt negativo">-</button> 
-                    <p class="quantidade">0</p> 
-                    <button class="bt positivo">+</button>
+function renderizaProdutos(products){   
+    
+    products.forEach(item =>{
+       
+        if(item.tipo === 'Salgados Fritos'){
+            salgadosFritos.innerHTML+=`
+            <div class="produtoWrapper">
+                <img class="imgProdutos" src="img/coxinha.jpg" alt="">
+    
+                <div class="produto">
+    
+                    <p id="precoDescricao">${item.nome}</p>
+                    <p id="precoDescricao">${item.preco.toFixed(2).replace('.',',')}</p> 
+    
+                    <div class="botoes" style="display:flex">
+                        <button class="bt negativo">-</button> 
+                        <p class="quantidade">0</p> 
+                        <button class="bt positivo">+</button>
+                    </div>
+    
                 </div>
+            </div>`
 
-            </div>
-        </div>`
-        
+        }else if(item.tipo === 'Esfiha'){
+            esfihas.innerHTML+=`
+            <div class="produtoWrapper">
+                <img class="imgProdutos" src="img/coxinha.jpg" alt="">
+    
+                <div class="produto">
+    
+                    <p id="precoDescricao">${item.nome}</p>
+                    <p id="precoDescricao">${item.preco.toFixed(2).replace('.',',')}</p> 
+    
+                    <div class="botoes" style="display:flex">
+                        <button class="bt negativo">-</button> 
+                        <p class="quantidade">0</p> 
+                        <button class="bt positivo">+</button>
+                    </div>
+    
+                </div>
+            </div>`
+
+        }else{
+            empadas.innerHTML+=`
+            <div class="produtoWrapper">
+                <img class="imgProdutos" src="img/coxinha.jpg" alt="">
+    
+                <div class="produto">
+    
+                    <p id="precoDescricao">${item.nome}</p>
+                    <p id="precoDescricao">${item.preco.toFixed(2).replace('.',',')}</p> 
+    
+                    <div class="botoes" style="display:flex">
+                        <button class="bt negativo">-</button> 
+                        <p class="quantidade">0</p> 
+                        <button class="bt positivo">+</button>
+                    </div>
+    
+                </div>
+            </div>`
+        }
+     
+
     })
 
-    const listaProdutos = Array.from(produtos.children)
-    verificaQuantidade(listaProdutos)
+    const listaFritos = Array.from(salgadosFritos.children)
+    const listaEmpadas = Array.from(empadas.children)
+    const listaEsfihas = Array.from(esfihas.children)
+    const abc = [listaFritos,listaEmpadas,listaEsfihas]
+    verificaQuantidade(abc)
+    // console.log(listaProdutos);
+   
 
 }
+
+
+function verificaQuantidade(listaProdutos){
+    listaProdutos.forEach((item)=>{
+        
+        item.forEach(item =>{
+            console.log(item);
+
+            const negativo = item.children[1].children[2].children[0]
+            let quantidade = item.children[1].children[2].children[1]
+            const positivo = item.children[1].children[2].children[2]
+            
+        
+            negativo.addEventListener('click',()=>{
+               
+      
+                if(quantidade.innerHTML-1 <= 0){
+                    quantidade.style.color=''
+                    quantidade.innerHTML=0
+                    
+                  
+                }else{
+                    quantidade.innerHTML --
+                    
+                }
+              
+                pedidoFinal.forEach( (itemPF) => {
+    
+                    if(itemPF.quantidade <= 0){
+                        itemPF.quantidade = 0
+    
+                    }else if(itemPF.nome === item.children[1].children[0].innerText){
+                       itemPF.quantidade --
+                       itemPF.somaPreco =  (itemPF.preco * itemPF.quantidade).toFixed(2)
+                       mostraPedidoCliente()
+                    }
+    
+                });
+        
+            })
+          
+            positivo.addEventListener('click',()=>{
+            
+                quantidade.innerHTML++
+               
+                if(quantidade.innerHTML >=1){
+                    quantidade.style.color='green'
+                }else{
+                    quantidade.style.color=''
+                }
+              
+                pedidoFinal.forEach( (itemPF) => {
+                   
+                    if(itemPF.nome === item.children[1].children[0].innerText){
+                       itemPF.quantidade ++
+                       itemPF.somaPreco =  (itemPF.preco * itemPF.quantidade).toFixed(2)
+                       mostraPedidoCliente()
+                       
+                    }
+    
+                });
+               
+    
+            })
+    
+
+
+
+
+
+
+        })
+   
+    
+    })
+    
+}
+
 
 
 function somaPrecos(){
@@ -105,72 +233,6 @@ function enviarPedidoZap(){
 
 
 
-
-function verificaQuantidade(listaProdutos){
-    listaProdutos.forEach((item)=>{
-        
-        const negativo = item.children[1].children[2].children[0]
-        let quantidade = item.children[1].children[2].children[1]
-        const positivo = item.children[1].children[2].children[2]
-        
-    
-        
-        negativo.addEventListener('click',()=>{
-           
-  
-            if(quantidade.innerHTML-1 <= 0){
-                quantidade.style.color=''
-                quantidade.innerHTML=0
-                
-              
-            }else{
-                quantidade.innerHTML --
-                
-            }
-          
-            pedidoFinal.forEach( (itemPF) => {
-
-                if(itemPF.quantidade <= 0){
-                    itemPF.quantidade = 0
-
-                }else if(itemPF.nome === item.children[1].children[0].innerText){
-                   itemPF.quantidade --
-                   itemPF.somaPreco =  (itemPF.preco * itemPF.quantidade).toFixed(2)
-                   mostraPedidoCliente()
-                }
-
-            });
-    
-        })
-      
-        positivo.addEventListener('click',()=>{
-        
-            quantidade.innerHTML++
-           
-            if(quantidade.innerHTML >=1){
-                quantidade.style.color='green'
-            }else{
-                quantidade.style.color=''
-            }
-          
-            pedidoFinal.forEach( (itemPF) => {
-               
-                if(itemPF.nome === item.children[1].children[0].innerText){
-                   itemPF.quantidade ++
-                   itemPF.somaPreco =  (itemPF.preco * itemPF.quantidade).toFixed(2)
-                   mostraPedidoCliente()
-                   
-                }
-
-            });
-           
-
-        })
-
-    
-    })
-    
-}
 
 
 

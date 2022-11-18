@@ -255,12 +255,30 @@ footer{
     border: black solid 5px;
     flex-wrap: wrap;
 }
+.produtos-sgds{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-content: center;
+    width: 70vw;
+    border: black solid 5px;
+    flex-wrap: wrap;
+}
+
+.sgds{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 
 .produtoWrapper{
     display: flex;
     flex-direction: column;
     justify-items: center;
     margin: 2vh 2vw;
+    min-width: 220px;
+    max-width: 280px;
   
 }
 
@@ -406,6 +424,11 @@ footer{
         display: flex;
         align-content: center;
     }
+
+    .produtoWrapper{
+        min-width: 180px;
+        max-width: 200px;
+    }
  
   
 }
@@ -437,9 +460,21 @@ footer{
         height:500px;
         width: 90vw;
     }
-    
+    .produtoWrapper{
+        min-width: 150px;
+        max-width: 160px;
+    }
     
 }
+@media (max-width:460px) {
+    .produtoWrapper{
+        min-width: 80px;
+        max-width: 120px;
+    }
+
+}
+
+
 @media (max-height:500px) {
     .maisVendidos{
         height: 180vh;
@@ -453,6 +488,8 @@ footer{
    
 
 }
+
+
 
 @media (max-height:420px) {
     .maisVendidos{
