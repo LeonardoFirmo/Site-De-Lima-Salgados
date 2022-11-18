@@ -10,12 +10,24 @@ enviarPedido.addEventListener('click', enviarPedidoZap)
 
 
 let pedidoFinal = [
- { nomeProduto:'Coxinha de frango',precoProduto:1.60,somaPreco:0,quantidadeProduto:0},
- { nomeProduto:'Esfirra',precoProduto:2.60,somaPreco:0,quantidadeProduto:0},
- { nomeProduto:'Coxinha de calabresa',precoProduto:1.90,somaPreco:0,quantidadeProduto:0},
- { nomeProduto:'Pastel de carne',precoProduto:3.90,somaPreco:0,quantidadeProduto:0},
- { nomeProduto:'Empadão',precoProduto:8.90,somaPreco:0,quantidadeProduto:0},
-
+    { nome:'Coxinha de frango',tipo:'Salgados Fritos',preco:1.80,somaPreco:0,quantidade:0,img:'coxinhaDeFrango.jpg'},
+    { nome:'Coxinha de frango c/ catupiry',tipo:'Salgados Fritos',preco:2.00,somaPreco:0,quantidade:0,img:'coxinhaDeFrango.jpg'},
+    { nome:'Bolinho de queijo',tipo:'Salgados Fritos',preco:1.80,somaPreco:0,quantidade:0,img:'esfirra.jpg'},
+    { nome:'Bolinho de carne',tipo:'Salgados Fritos',preco:1.80,somaPreco:0,quantidade:0,img:'coxinhaDeCalabresa.jpg'},
+    { nome:'Bolinho de calabresa',tipo:'Salgados Fritos',preco:1.80,somaPreco:0,quantidade:0,img:'pastelDeCarne.jpg'},
+    { nome:'Risole',tipo:'Salgados Fritos',preco:1.80,somaPreco:0,quantidade:0,img:'empadao.jpg'},
+    { nome:'Kibe',tipo:'Salgados Fritos',preco:1.80,somaPreco:0,quantidade:0,img:'empadao.jpg'},
+   
+    { nome:'Empada de frango',tipo:'Empadas',preco:3.00,somaPreco:0,quantidade:0,img:'empadao.jpg'},
+    { nome:'Empada de frango c/ catupiry',tipo:'Empadas',preco:3.50,somaPreco:0,quantidade:0,img:'empadao.jpg'},
+   
+    { nome:'Esfiha de carne',tipo:'Esfiha',preco:3.00,somaPreco:0,quantidade:0,img:'empadao.jpg'},
+    { nome:'Esfiha de queijo',tipo:'Esfiha',preco:3.00,somaPreco:0,quantidade:0,img:'empadao.jpg'},
+    { nome:'Esfiha de frango',tipo:'Esfiha',preco:3.00,somaPreco:0,quantidade:0,img:'empadao.jpg'},
+    { nome:'Esfiha de frango c/ catupiry',tipo:'Esfiha',preco:3.50,somaPreco:0,quantidade:0,img:'empadao.jpg'},
+    { nome:'Esfiha de Calabresa',tipo:'Esfiha',preco:3.00,somaPreco:0,quantidade:0,img:'empadao.jpg'},
+    { nome:'Esfiha de catupiry',tipo:'Esfiha',preco:3.00,somaPreco:0,quantidade:0,img:'empadao.jpg'},
+    { nome:'Esfiha de catupiry com milho',tipo:'Esfiha',preco:3.50,somaPreco:0,quantidade:0,img:'empadao.jpg'},
 ]
 
 renderizaProdutos(pedidoFinal)
@@ -29,8 +41,8 @@ function renderizaProdutos(product){
 
             <div class="produto">
 
-                <p id="precoDescricao">${item.nomeProduto}</p>
-                <p id="precoDescricao">${item.precoProduto.toFixed(2).replace('.',',')}</p> 
+                <p id="precoDescricao">${item.nome}</p>
+                <p id="precoDescricao">${item.preco.toFixed(2).replace('.',',')}</p> 
 
                 <div class="botoes" style="display:flex">
                     <button class="bt negativo">-</button> 
@@ -70,9 +82,9 @@ function mostraPedidoCliente(){
     }
    
     pedidoFinal.forEach(item =>{
-       if(item.quantidadeProduto > 0){
-        clienteResumoPedido.innerHTML+= `${item.nomeProduto}<br>
-        Quantidade:${item.quantidadeProduto}<br>
+       if(item.quantidade > 0){
+        clienteResumoPedido.innerHTML+= `${item.nome}<br>
+        Quantidade:${item.quantidade}<br>
         Subtotal do item:${item.somaPreco.replace('.',',')}<br>
         --------------------------------<br>`} 
     })
@@ -118,12 +130,12 @@ function verificaQuantidade(listaProdutos){
           
             pedidoFinal.forEach( (itemPF) => {
 
-                if(itemPF.quantidadeProduto <= 0){
-                    itemPF.quantidadeProduto = 0
+                if(itemPF.quantidade <= 0){
+                    itemPF.quantidade = 0
 
-                }else if(itemPF.nomeProduto === item.children[1].children[0].innerText){
-                   itemPF.quantidadeProduto --
-                   itemPF.somaPreco =  (itemPF.precoProduto * itemPF.quantidadeProduto).toFixed(2)
+                }else if(itemPF.nome === item.children[1].children[0].innerText){
+                   itemPF.quantidade --
+                   itemPF.somaPreco =  (itemPF.preco * itemPF.quantidade).toFixed(2)
                    mostraPedidoCliente()
                 }
 
@@ -143,9 +155,9 @@ function verificaQuantidade(listaProdutos){
           
             pedidoFinal.forEach( (itemPF) => {
                
-                if(itemPF.nomeProduto === item.children[1].children[0].innerText){
-                   itemPF.quantidadeProduto ++
-                   itemPF.somaPreco =  (itemPF.precoProduto * itemPF.quantidadeProduto).toFixed(2)
+                if(itemPF.nome === item.children[1].children[0].innerText){
+                   itemPF.quantidade ++
+                   itemPF.somaPreco =  (itemPF.preco * itemPF.quantidade).toFixed(2)
                    mostraPedidoCliente()
                    
                 }
