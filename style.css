@@ -250,12 +250,9 @@ footer{
 
 .produtos{
     display: flex;
-    flex-direction: column;
-    width: 100%;
     justify-content: center;
     width: 70vw;
     border: black solid 5px;
-    border-radius: 15px;
     flex-wrap: wrap;
 }
 
@@ -263,24 +260,8 @@ footer{
     display: flex;
     flex-direction: column;
     justify-items: center;
-    margin: 2vh 0vw;
-    min-width: 180px;
-    max-width: 270px;
+    margin: 2vh 2vw;
   
-}
-
-
-.salgados{
-    display: flex;
-    flex-wrap: wrap;
-
-}
-
-
-.produtos h2{
-    display: inline-block;
-    width: 100%;
-    text-align: center;
 }
 
 
@@ -294,7 +275,7 @@ footer{
 }
 
 #precoDescricao{
-   height: 30%;
+   text-align: center;
    font-weight: 400;
 }
 
@@ -303,7 +284,7 @@ footer{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 15px;
+    font-size: 20px;
     height: 20vh;
     width: 100%;
     
@@ -469,8 +450,6 @@ footer{
         height: 175px;
        
     }
-
-    
    
 
 }
