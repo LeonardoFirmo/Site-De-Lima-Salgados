@@ -247,14 +247,14 @@ footer{
 
 
 /* Salgados page \/ */ 
-
+/* 
 .produtos{
     display: flex;
     justify-content: center;
     width: 70vw;
     border: black solid 5px;
     flex-wrap: wrap;
-}
+} */
 .produtos-sgds{
     display: flex;
     flex-direction: column;
@@ -282,6 +282,16 @@ footer{
   
 }
 
+.tituloProdutos{
+    height: 35vh;
+    
+}
+
+.tituloProdutos img{
+    width: 100%;
+    height: 25vh;
+
+}
 
 /* produto individual */
 
